@@ -9,10 +9,10 @@ export default function Howitworks() {
   return (
     <Box sx={{ display: "flex", gap: { xs: "40px" }, flexDirection: "column" ,padding:"20px 30px"}}>
     <Heading title="How it works" subtitle="Find out How to get started"></Heading>
-    <Grid container  rowSpacing={{xs:1}}>
+    <Grid container  rowSpacing={{xs:1,sm:2}}>
       {imgNames.map((data,index)=>{
         return(
-          <Grid key={index} item xs={12} md={4} sm={4} lg={4} sx={{display:"flex",justifyContent:"center",cursor:"pointer"}}>
+          <Grid key={index} item xs={12} md={4} sm={6} lg={4} sx={{display:"flex",justifyContent:"center",cursor:"pointer"}}>
           <Box sx={{width:"300px",height:"380px",backgroundColor:"#3B3B3B",borderRadius:"12px",display:"flex",flexDirection:'column',alignItems:"center",justifyContent:"center"}}>
             <img src={"/"+data}></img>
             <Typography variant="body1" sx={{fontWeight:"600"}}>{names.at(index)}</Typography>

@@ -11,29 +11,56 @@ import CategoriesSection from './component/CategoriesSection'
 import ExploreNFT from './component/ExploreNFT'
 import Howitworks from './component/Howitworks'
 import Connect from './component/Connect'
-
+import Footer from './component/Footer'
+import Countdown from './component/Countdown'
+import {RouterProvider, createBrowserRouter} from "react-router-dom"
+import Layout from './component/Layout'
+import MainPage from './component/MainPage'
+import CreatorPage from "./component/CreatorPage"
+import Login from './component/Login'
+import Marketplace from './component/Marketplace'
+import NFTpage from './component/NFTpage'
+import Rankings from './component/Rankings'
+import { UserContextProvider } from './context/UserContext'
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [count, setCount] = useState(0);
+  const router = createBrowserRouter([
+    {
+      path:"/",
+      element:<Layout></Layout>,
+      children:[
+        {
+          path:"/",
+           element:<MainPage></MainPage>
+        },
+        {
+          path:"/login",
+          element:<Login></Login>
+        },
+        {
+          path:"/creatorPage",
+          element:<CreatorPage></CreatorPage>
+        },
+        {
+          path:"/marketplace",
+          element:<Marketplace></Marketplace>
+        },
+        {
+          path:"/nftpage",
+          element:<NFTpage></NFTpage>
+        },
+        {
+          path:"/rankings",
+          element:<Rankings></Rankings>
+        }
+      ]
+    }
+  ])
   return (
     <>
-    <Navbar></Navbar>
-    <Box>
-      <Hero></Hero>
-      <CollectionSection></CollectionSection>
-      <br></br>
-      <ArtistSection></ArtistSection>
-      <br></br>
-      <CategoriesSection></CategoriesSection>
-      <br></br>
-      <ExploreNFT></ExploreNFT>
-      <br></br>
-      <img src="/NFT Highlight.png" width="100%" height="350vh"></img>
-      <br></br>
-      <Howitworks></Howitworks>
-      <br></br>
-      <Connect></Connect>
-    </Box>
+    <UserContextProvider>
+    <RouterProvider router={router}></RouterProvider>
+    </UserContextProvider>
     </>
   )
 }

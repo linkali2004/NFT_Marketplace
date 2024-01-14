@@ -1,6 +1,7 @@
 import { Avatar, Box, Button, Grid, Typography } from '@mui/material'
 import React from 'react'
 import Heading from './Heading';
+import { Link } from 'react-router-dom';
 
 export default function ArtistSection() {
   const imgNames=["Artist1.png","Artist2.png","Artist3.png","Artist4.png","Artist5.png","Artist6.png","Artist7.png","Artist8.png","Artist9.png","Artist10.png","Artist11.png","Artist12.png"];
@@ -16,7 +17,7 @@ export default function ArtistSection() {
              <Box sx={{width:"200px"}}> 
              <Avatar sx={{width:"15px",height:"15px",backgroundColor:"#2B2B2B",fontSize:"9px" ,margin:"4px 4px"}}>{index+1}</Avatar>
              </Box>
-              <img src={"/"+data} width="100px" height="100px"></img>
+              <Link to = "/creatorPage"><img src={"/"+data} width="100px" height="100px"></img></Link>
               <Typography variant="body1" sx={{fontWeight:"600"}}>{names.at(index)}</Typography>
               <Box sx={{display:"flex",gap:1}}>
               <Typography variant="body1" sx={{fontWeight:"600",color:"#858584",fontSize:"12px"}}>Total sales</Typography>

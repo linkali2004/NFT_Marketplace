@@ -8,16 +8,20 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import StarBorderPurple500Icon from '@mui/icons-material/StarBorderPurple500';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import MenuIcon from '@mui/icons-material/Menu';
 import { IconButton } from '@mui/material';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 export default function Drawer() {
+  const {handleOpen} = React.useContext(UserContext)
   const [state, setState] = React.useState({
     left: false,
   });
-
+   const navigate = useNavigate();
   const toggleDrawer = (anchor, open) => (event) => {
     if (
       event &&
@@ -32,7 +36,7 @@ export default function Drawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 , margin:0}}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 , margin:0 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -42,12 +46,13 @@ export default function Drawer() {
           <ListItem key={text} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {index===0?<StorefrontIcon></StorefrontIcon>:(index===1)?<StarBorderPurple500Icon></StarBorderPurple500Icon>:<AccountBalanceWalletIcon></AccountBalanceWalletIcon>}
               </ListItemIcon>
-              <ListItemText primary={text} />
+             {(text==="Connect Wallet")?<ListItemText onClick = {handleOpen} primary={text} />:( <ListItemText primary={text} onClick={()=>navigate(`/${text.toLowerCase()}`)} />)}
             </ListItemButton>
           </ListItem>
         ))}
+        <Box sx={{display:"flex",justifyContent:"center",marginTop:"15px"}}><Button onClick={ ()=>navigate("/login")}variant="contained" sx={{backgroundColor:"#A259FF" }}>Login</Button></Box>
       </List>
     </Box>
   );
