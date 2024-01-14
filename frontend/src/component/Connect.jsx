@@ -12,7 +12,7 @@ export default function Connect() {
   );
   return (
     <Box sx={{width:"100%",display:"flex",justifyContent:"center"}}>
-        <Box sx={{backgroundColor:"#3B3B3B" , borderRadius:"12px",width:{lg:"1050px",xs:"300px",sm:"600px"},height:{lg:"430px",xs:"510px"},display:"flex",flexDirection:{xs:"column",lg:"row",sm:"column",md:"row"},justifyContent:"center",alignItems:"center",gap:"20px"}}>
+        <Box sx={{backgroundColor:"#3B3B3B" , borderRadius:"12px",width:{lg:"1050px",xs:"350px",sm:"600px"},height:{lg:"430px",xs:"510px"},display:"flex",flexDirection:{xs:"column",lg:"row",sm:"column",md:"row"},justifyContent:"center",alignItems:"center",gap:"20px"}}>
             <img src="/Photo.png" style={{width:isSmallDevice || isMediumDevice ?"30vh":"50vh",height:isSmallDevice||isMediumDevice ?"25vh":"40vh"}}></img>
             <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",height:"180px"}}>
             <Typography variant="body1" sx={{fontSize:{xs:"16px",lg:"35px"}}}>Join our weekly Digest.</Typography>
