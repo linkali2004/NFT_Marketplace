@@ -2,17 +2,30 @@ import { Box, Button, TextField, Typography, Input, FormControl } from '@mui/mat
 import PersonIcon from '@mui/icons-material/Person';
 import { useForm, Controller } from "react-hook-form"
 import React from 'react'
+import TextFields from './TextFields';
+import {yupResolver} from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 export default function Login() {
-    const { control, handleSubmit } = useForm({
+  const schema = yup.object({
+    Username:yup.string().required("Username is required"),
+    Email:yup.string().required("Email is requird").matches(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ , "Please enter a correct email"),
+    Password:yup.string().required("Password is required").matches(/^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,"Password does not match the pattern"),
+    ConfirmPassword:yup.string().required("Please confirm your password").oneOf([yup.ref('Password'), null], "Passwords don't match.")
+   })
+
+    const { control, handleSubmit,formState:{errors} } = useForm({
         defaultValues: {
           Username: "",
           Email:"",
-          password:"",
-          confirmPassword:"",
+          Password:"",
+          ConfirmPassword:"",
         },
+        resolver:yupResolver(schema)
       })
-      const onSubmit = (data) => console.log(data)
+
+
+      const onSubmit = (data) => console.log({data}) 
   return (
     <Box sx={{width:"100%",display:"flex",flexDirection:{lg:"row",xs:"column"}}}>
         <Box sx={{backgroundImage:"url(/login.png)",width:{lg:"26%",xs:"100%",md:"100%",sm:"100%"},height:"400px",backgroundSize:{xs:"contain",md:"cover",sm:"contain",lg:"contain"},}}></Box>
@@ -22,22 +35,11 @@ export default function Login() {
 
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Box  sx={{marginTop:"20px" , display:"flex",flexDirection:"column" , gap:"8px"}}>
-                      <Controller
-                       name="Username"
-                        control={control}
-                        render={({ field }) => <Input placeholder='Username' sx={{padding:"8px",backgroundColor:"white",borderRadius:"12px 12px 0px 0px",width:{lg:"50ch",xs:"30ch"}}} {...field} />}/>
-                         <Controller
-                       name="Email"
-                        control={control}
-                        render={({ field }) => <Input placeholder='Email' sx={{padding:"8px",backgroundColor:"white",borderRadius:"12px 12px 0px 0px",width:{lg:"50ch",xs:"30ch"}}} {...field} />}/>
-                         <Controller
-                       name="password"
-                        control={control}
-                        render={({ field }) => <Input placeholder='Password' sx={{padding:"8px",backgroundColor:"white",borderRadius:"12px 12px 0px 0px",width:{lg:"50ch",xs:"30ch"}}} {...field} />}/>
-                         <Controller
-                       name="confirmPassword"
-                        control={control}
-                        render={({ field }) => <Input placeholder='Confirm Password' sx={{padding:"8px",backgroundColor:"white",borderRadius:"12px 12px 0px 0px",width:{lg:"50ch",xs:"30ch"}}} {...field} />}/>
+                     <TextFields control={control} label="Username" name="Username" error={errors}></TextFields>
+                     <TextFields control={control} label="Email"  name="Email" error={errors}></TextFields>
+                     <TextFields control={control} label="Password"  name="Password" error={errors}></TextFields>
+                     <TextFields control={control} label="ConfirmPassword"  name="ConfirmPassword" error={errors}></TextFields>
+                         
        </Box>
         <Button variant="contained" type="submit" sx={{backgroundColor:"#A259FF",marginTop:"15px"}} startIcon={<PersonIcon></PersonIcon>}>Create Account</Button>
        </form>

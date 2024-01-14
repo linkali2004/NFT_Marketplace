@@ -8,7 +8,7 @@ export default function ArtistSection() {
   const names=["Keepitreal","DigiLab","GravityOne","Juanie","BlueWhale","Mr Fox","Shrommie","Robotica","RustyRobot","AnimaKid","Dotgu","Giblier"]
   return (
     <Box sx={{ display: "flex", gap: { xs: "40px" }, flexDirection: "column" ,padding:"20px 30px"}}>
-      <Heading title="Top Creators" subtitle="Check out top rated creators on NFT Marketplace" btnname="View rankings"></Heading>
+      <Heading title="Top Creators" subtitle="Check out top rated creators on NFT Marketplace" btnname="View rankings" linkBtn="/rankings"></Heading>
       <Grid container  rowSpacing={{xs:1}}>
         {imgNames.map((data,index)=>{
           return(

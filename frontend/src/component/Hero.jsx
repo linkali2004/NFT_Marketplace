@@ -1,14 +1,16 @@
 import { Avatar, Box, Button, Typography } from '@mui/material'
 import React from 'react'
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import { useNavigate } from 'react-router-dom';
 
 export default function Hero() {
+    const navigate = useNavigate();
     return (
         <Box sx={{ display: "flex", gap:{xs:"40px"},flexDirection: { xs: "column", sm: "column", md: "row", lg: "row" }, justifyContent: "center", alignItems: "center", padding:{xs:"40px 0px", lg:"80px 0px"}}}>
             <Box sx={{display: "flex", flexDirection: "column", gap: 1, minWidth: "200px", minHeight: "200px", justifyContent: "center", alignItems: {xs:"center",lg:"flex-start" }}}>
             <Typography variant="body1" sx={{fontSize:{xs:"32px",lg:"48px"},width:"80%"}}>Discover Digital Arts & Collect NFTs</Typography>
 <Typography variant="body1" sx={{fontSize:{xs:"16px",lg:"16px"},width:"80%"}}>NFT marketplace UI created with Anima for Figma. Collect, buy and sell art from more than 20k NFT artists.</Typography>
-<Button variant="contained" sx={{backgroundColor:"#A259FF",marginTop:"15px"}} startIcon={<RocketLaunchIcon></RocketLaunchIcon>}>Get Started</Button>
+<Button onClick={()=>navigate("/login")} variant="contained" sx={{backgroundColor:"#A259FF",marginTop:"15px"}} startIcon={<RocketLaunchIcon></RocketLaunchIcon>}>Get Started</Button>
 
 <Box sx={{display:"flex",gap:"50px",marginTop:"20px"}}>
 <Box>
