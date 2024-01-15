@@ -1,4 +1,4 @@
-import { Avatar, Badge, Box, Button, Grid, IconButton, InputAdornment, Tab, Tabs, TextField, Typography } from '@mui/material'
+import { Avatar, Badge, Box, Button, Chip, Grid, IconButton, InputAdornment, Tab, Tabs, TextField, Typography } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
@@ -22,8 +22,8 @@ export default function Marketplace() {
             </Box>
             <Box sx={{ borderBottom: 1, borderColor: 'divider', marginTop: "20px" }}>
                 <Tabs value={value} variant="fullWidth">
-                    <Tab onClick={()=>setValue(0)} label="NFTs" icon={<Badge badgeContent={99} color="secondary" />} sx={{textTransform:"capitalize",color:'white'}}  iconPosition="end"/>
-                    <Tab onClick={()=>setValue(1)} label="Collections" icon={<Badge badgeContent={199} color="secondary" />} sx={{textTransform:"capitalize",color:'white'}} iconPosition="end" />
+                    <Tab onClick={()=>setValue(0)} label="NFTs" icon={<Chip label="99+" />} sx={{textTransform:"capitalize",color:'white'}}  iconPosition="end"/>
+                    <Tab onClick={()=>setValue(1)} label="Collections" icon={<Chip label="199+" />} sx={{textTransform:"capitalize",color:'white'}} iconPosition="end" />
                 </Tabs>
             </Box>
             <br></br>

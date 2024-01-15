@@ -1,10 +1,12 @@
 import { Avatar, Box, Button, Typography } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 export default function Hero() {
     const navigate = useNavigate();
+
     return (
         <Box sx={{ display: "flex", gap:{xs:"40px"},flexDirection: { xs: "column", sm: "column", md: "row", lg: "row" }, justifyContent: "center", alignItems: "center", padding:{xs:"40px 0px", lg:"80px 0px"}}}>
             <Box sx={{display: "flex", flexDirection: "column", gap: 1, minWidth: "200px", minHeight: "200px", justifyContent: "center", alignItems: {xs:"center",lg:"flex-start" }}}>
