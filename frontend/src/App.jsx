@@ -22,8 +22,12 @@ import Marketplace from './component/Marketplace'
 import NFTpage from './component/NFTpage'
 import Rankings from './component/Rankings'
 import { UserContextProvider } from './context/UserContext'
+import { WagmiProvider } from 'wagmi'
+import Exchange from './component/Exchange'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { config } from './config'
 function App() {
-  const [count, setCount] = useState(0);
+  const queryClient = new QueryClient()
   const router = createBrowserRouter([
     {
       path:"/",
@@ -52,15 +56,23 @@ function App() {
         {
           path:"/rankings",
           element:<Rankings></Rankings>
-        }
+        },
+        // {
+        //   path:"/exchange",
+        //   element:<Exchange></Exchange>
+        // }
       ]
     }
   ])
   return (
     <>
+       <QueryClientProvider client={queryClient}> 
+    <WagmiProvider config={config}>
     <UserContextProvider>
     <RouterProvider router={router}></RouterProvider>
     </UserContextProvider>
+    </WagmiProvider>
+    </QueryClientProvider> 
     </>
   )
 }
