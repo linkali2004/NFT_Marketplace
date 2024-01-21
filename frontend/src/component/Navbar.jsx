@@ -53,6 +53,7 @@ export default function Navbar() {
   function handleLogout() {
     localStorage.removeItem("Authorization");
     setLoggedIn(false);
+    navigate("/login");
   }
   return (
     <>
@@ -71,12 +72,12 @@ export default function Navbar() {
                     <Link to="/marketplace"><Tab label="Marketplace" sx={{ textTransform: "capitalize", color: 'white' }} onClick={() => setValue(0)} /></Link>
                     <Link to="/rankings"><Tab label="Rankings" sx={{ textTransform: "capitalize", color: 'white' }} onClick={() => setValue(1)} /></Link>
                     <Tab label="Connect Wallet" sx={{ textTransform: "capitalize", color: 'white' }} onClick={() => { setValue(2); handleOpen() }} />
-                    <Link to="/createnfts"><Tab label="Create NFT" sx={{ textTransform: "capitalize", color: 'white' }} onClick={() => setValue(3)} /></Link>
+                    <Link to="/createnft"><Tab label="Create NFT" sx={{ textTransform: "capitalize", color: 'white' }} onClick={() => setValue(3)} /></Link>
                     {/* <Link to="/exchange"><Tab label="Exchange" sx={{ textTransform: "capitalize", color: 'white' }} onClick={() => setValue(4)} /></Link> */}
                   </Tabs>
                   {loggedIn ? <Box sx={{ display: "flex", gap: 1, alignItems: "center", cursor: "pointer" }}>
                     <Avatar src='/Avatar Placeholder.png' sx={{ width: "24px", height: "24px", borderRadius: "50%" }}></Avatar>
-                    <Button variant="contained" sx={{ backgroundColor: "#A259FF", borderRadius: "12px", padding: "5px 20px", height: "80%" }} startIcon={<PersonIcon></PersonIcon>} onClick={handleLogout}>Logout</Button>
+                    <Button variant="contained" sx={{ backgroundColor: "#A259FF", borderRadius: "12px", padding: "5px 20px", height: "80%" }} startIcon={<PersonIcon></PersonIcon>} onClick={handleLogout}>Log out</Button>
                   </Box> : <Link to="/login"> <Button variant="contained" sx={{ backgroundColor: "#A259FF", borderRadius: "12px", padding: "5px 20px", height: "80%" }} startIcon={<PersonIcon></PersonIcon>}>Log here</Button></Link>}
                 </Box>
               </>

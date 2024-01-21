@@ -21,11 +21,13 @@ import Login from './component/Login'
 import Marketplace from './component/Marketplace'
 import NFTpage from './component/NFTpage'
 import Rankings from './component/Rankings'
+import CreateNft from './component/CreateNft'
 import { UserContextProvider } from './context/UserContext'
 import { WagmiProvider } from 'wagmi'
 import Exchange from './component/Exchange'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { config } from './config'
+import { NFTContextProvider } from './context/NFTcontext'
 function App() {
   const queryClient = new QueryClient()
   const router = createBrowserRouter([
@@ -61,6 +63,10 @@ function App() {
         //   path:"/exchange",
         //   element:<Exchange></Exchange>
         // }
+        {
+          path:"/createnft",
+          element:<CreateNft></CreateNft>
+        },
       ]
     }
   ])
@@ -68,9 +74,11 @@ function App() {
     <>
        <QueryClientProvider client={queryClient}> 
     <WagmiProvider config={config}>
+      <NFTContextProvider>
     <UserContextProvider>
     <RouterProvider router={router}></RouterProvider>
     </UserContextProvider>
+    </NFTContextProvider>
     </WagmiProvider>
     </QueryClientProvider> 
     </>

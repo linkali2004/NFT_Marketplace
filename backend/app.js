@@ -7,11 +7,13 @@ const validator = require("validator");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
-const result = JSON.parse(fs.readFileSync("./data/nfts.json"));
+
 
 let connection = false;
 let nft=null;
@@ -70,6 +72,7 @@ app.route('/api/v1/signup').post(async (req,res)=>{
         transformedCredentials["ConfirmPassword"]=hashedConfirmedPassword;
         const result = await login.create(transformedCredentials);
         const token = jwt.sign({id:result._id},"hello everyone",{expiresIn: '1d'})
+        res.cookie("jwt",token,{httpOnly:true,maxAge:86400000})
         res.status(200).json({
             data:{result,token}
         })
@@ -86,6 +89,7 @@ app.route("/api/v1/login").post(async (req,res)=>{
         const document = await login.findOne({Username:req.body.Username});
         const check = bcrypt.compareSync(req.body.Password,document.Password);
         const token = jwt.sign({id:document._id},"hello everyone",{expiresIn: '24h'})
+        res.cookie("jwt",token,{httpOnly:true,maxAge:86400000})
         if(document.Password === document.ConfirmPassword)
         {
             res.status(200).json({
@@ -128,3 +132,4 @@ app.listen(port,async ()=>{
     login=mongoose.model("User",loginSchema);
     console.log("App running on port 3000");
 })
+

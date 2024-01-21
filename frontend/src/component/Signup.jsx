@@ -47,7 +47,7 @@ export default function Signup()
          setLoading(false);
          setLoggedIn(true);
          console.log(result);
-         setUserInfo({...result.result.data.data});
+         setUserInfo({...result.data.data.result.Username});
          if(result.status === 200)
          {
           localStorage.setItem("Authorization",`Bearer ${result.data.data.token}`)
