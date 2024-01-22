@@ -19,6 +19,7 @@ import MainPage from './component/MainPage'
 import CreatorPage from "./component/CreatorPage"
 import Login from './component/Login'
 import Marketplace from './component/Marketplace'
+import  UserOwnedNFTs from "./component/UserOwnedNFTs";
 import NFTpage from './component/NFTpage'
 import Rankings from './component/Rankings'
 import CreateNft from './component/CreateNft'
@@ -45,7 +46,7 @@ function App() {
         },
         {
           path:"/creatorPage",
-          element:<CreatorPage></CreatorPage>
+          element:<CreatorPage></CreatorPage>,
         },
         {
           path:"/marketplace",
@@ -67,6 +68,10 @@ function App() {
           path:"/createnft",
           element:<CreateNft></CreateNft>
         },
+        {
+          path:"/user",
+          element:< UserOwnedNFTs />
+        }
       ]
     }
   ])

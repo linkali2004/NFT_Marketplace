@@ -76,7 +76,7 @@ export default function Navbar() {
                     {/* <Link to="/exchange"><Tab label="Exchange" sx={{ textTransform: "capitalize", color: 'white' }} onClick={() => setValue(4)} /></Link> */}
                   </Tabs>
                   {loggedIn ? <Box sx={{ display: "flex", gap: 1, alignItems: "center", cursor: "pointer" }}>
-                    <Avatar src='/Avatar Placeholder.png' sx={{ width: "24px", height: "24px", borderRadius: "50%" }}></Avatar>
+                   <Link to="/user"> <Avatar src='/Avatar Placeholder.png' sx={{ width: "24px", height: "24px", borderRadius: "50%" }}></Avatar></Link>
                     <Button variant="contained" sx={{ backgroundColor: "#A259FF", borderRadius: "12px", padding: "5px 20px", height: "80%" }} startIcon={<PersonIcon></PersonIcon>} onClick={handleLogout}>Log out</Button>
                   </Box> : <Link to="/login"> <Button variant="contained" sx={{ backgroundColor: "#A259FF", borderRadius: "12px", padding: "5px 20px", height: "80%" }} startIcon={<PersonIcon></PersonIcon>}>Log here</Button></Link>}
                 </Box>
